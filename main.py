@@ -6,16 +6,16 @@ import os
 from zipfile import ZipFile
 
 
-path_cache = os.getcwd()+'\\files'
+path_cache = os.path.join(os.getcwd(),'files')
 def clean_cache():
     path = path_cache
-    if os.path.isdir('files\cache'):
-        for file in os.scandir(path+'\cache'):
+    if os.path.isdir(os.path.join(os.getcwd(),'files','cache')):
+        for file in os.scandir(os.path.join(os.getcwd(),'files','cache')):
             os.remove(file.path)
         #print('aanwezig')
     else:
         #print('niet aanwezig')
-        os.mkdir('files\cache')
+        os.mkdir(os.path.join(os.getcwd(),'files','cache'))
     return
 
 def cache_zip(path_zip,path_cache1):
@@ -24,11 +24,11 @@ def cache_zip(path_zip,path_cache1):
         zipObj.extractall(path_cache1)
     #print('File is unzipped in cache folder') 
 
-a = os.getcwd()+'\\files\\data.zip'
-b = os.getcwd()+'\\files\\cache'
+#a = os.getcwd()+'\\files\\data.zip'
+#b = os.getcwd()+'\\files\\cache'
 #cache_zip(a,b)
 def cached_files():
-    mypath = os.getcwd()+'\\files\\cache'
+    mypath = os.path.join(os.getcwd(),'files','cache') 
     path = os.path.abspath(mypath)
     list_dirs = [entry.path for entry in os.scandir(path) if entry.is_file()]
     #print(list_dirs)
